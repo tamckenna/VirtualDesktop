@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:VirtualDesktop"
              >
-    <!-- Add the following line to above block to reinstate the MainWindow -->
-    <!-- StartupUri="MainWindow.xaml" -->
-             <Application.Resources>
+    <Application.Resources>
     </Application.Resources>
 </Application>
