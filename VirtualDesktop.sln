@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualDesktop", "VirtualDesktop\VirtualDesktop.csproj", "{EBED2962-F552-4FC0-8B93-F888D0BEB834}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualDesktopService", "VirtualDesktopService\VirtualDesktopService.csproj", "{AC09BEA0-1E87-46E0-AB36-3B6AA1977663}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBED2962-F552-4FC0-8B93-F888D0BEB834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBED2962-F552-4FC0-8B93-F888D0BEB834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBED2962-F552-4FC0-8B93-F888D0BEB834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBED2962-F552-4FC0-8B93-F888D0BEB834}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC09BEA0-1E87-46E0-AB36-3B6AA1977663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC09BEA0-1E87-46E0-AB36-3B6AA1977663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC09BEA0-1E87-46E0-AB36-3B6AA1977663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC09BEA0-1E87-46E0-AB36-3B6AA1977663}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F4C23DC0-24D3-4C52-B6B5-36476229EDD7}
+	EndGlobalSection
+EndGlobal

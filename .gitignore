@@ -1,0 +1,5 @@
+obj/
+solution.sln.ide/
+bin/
+*.InstallLog
+
