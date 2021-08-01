@@ -295,6 +295,7 @@ namespace VirtualDesktop
                     {
                         ShowWindow(p.MainWindowHandle, SW_SHOWNORMAL);
                         SetForegroundWindow(p.MainWindowHandle);
+                        break;
                     }
                 }
             }
