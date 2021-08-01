@@ -28,8 +28,22 @@ namespace VirtualDesktopService
 
         protected override void OnStop()
         {
-            // TODO: Kill Process by ID (PD.processId)
+            // Kill Process by ID (PD.processId)
+            this.KillProcessById(PD.processId);
+        }
 
+        protected void KillProcessById(int pid)
+        {
+            Process[] process = Process.GetProcesses();
+
+            foreach (Process prs in process)
+            {
+                if (prs.Id == pid)
+                {
+                    prs.Kill();
+                    break;
+                }
+            }
         }
     }
 }
