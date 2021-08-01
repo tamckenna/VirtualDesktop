@@ -10,11 +10,12 @@ namespace VirtualDesktop
 {
     public partial class App : Application
     {
-        protected const string GLOBAL_CONF_FILE = @"C:\opt\conf\VirtualDesktop.conf";
+        protected string GLOBAL_CONF_FILE;
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            GLOBAL_CONF_FILE = this.getCurrentDirectoryPath() + @"\" + "VirtualDesktop.conf";
             HotKeyManager.SetupSystemHook();
             HotKeyManager.AddHotKey(ModifierKeys.Alt, Key.Left, staSwitchDesktopLeft);
             HotKeyManager.AddHotKey(ModifierKeys.Alt, Key.Right, staSwitchDesktopRight);
@@ -65,6 +66,13 @@ namespace VirtualDesktop
             var data = new Dictionary<string, string>();
             foreach (var row in File.ReadAllLines(GLOBAL_CONF_FILE)) { data.Add(row.Split('=')[0], string.Join("=",row.Split('=').Skip(1).ToArray())); }
             return data["FocusApp"];
+        }
+
+        protected string getCurrentDirectoryPath()
+        {
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+            return strWorkPath;
         }
     }
 }
