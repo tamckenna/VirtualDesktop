@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VirtualDesktopService
 {
@@ -21,8 +14,11 @@ namespace VirtualDesktopService
 
         protected override void OnStart(string[] args)
         {
+            this.killDuplicateExecutions();
+            string appPath = this.getCurrentDirectoryPath() + @"\" + "VirtualDesktop.exe";
+
             PD = new ProcessDetail();
-            PD.appPath = "VirtualDesktop.exe";
+            PD.appPath = appPath;
             PD = ProcessExtensions.StartProcessAsCurrentUser(PD);
         }
 
@@ -30,6 +26,13 @@ namespace VirtualDesktopService
         {
             // Kill Process by ID (PD.processId)
             this.KillProcessById(PD.processId);
+        }
+
+        protected string getCurrentDirectoryPath()
+        {
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+            return strWorkPath;
         }
 
         protected void KillProcessById(int pid)
@@ -44,6 +47,11 @@ namespace VirtualDesktopService
                     break;
                 }
             }
+        }
+
+        protected void killDuplicateExecutions()
+        {
+            foreach (var process in Process.GetProcessesByName("VirtualDesktop")){ process.Kill(); }
         }
     }
 }
