@@ -22,3 +22,7 @@ Copy-Item -Path "${projectRoot}/${name}/bin/${type}/${name}.exe" "${installHome}
 $binaryPath=Resolve-Path -Path "${installHome}/${name}.exe"
 $registryPath="HKLM:\Software\Microsoft\Windows\CurrentVersion\Run"
 sudo "New-ItemProperty -Force -Path \""$registryPath\"" -Name \""$name\"" -Value '\""${binaryPath}\""' -PropertyType String"
+
+# Start Process back up
+Start-Process -FilePath "$binaryPath"
+
