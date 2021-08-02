@@ -1,6 +1,9 @@
 #!/usr/bin/env pwsh
 param(
-    [string]$installHome="${env:SystemDrive}/opt/virtualdesktop"
+    [string]$installHome="${env:SystemDrive}/opt/virtualdesktop",
+    [string]$serviceName="VirtualDesktopService",
+    [string]$serviceDisplayName="Virtual Desktop Service",
+    [string]$serviceDescription="A service managing Virtual Desktop hot keys."
 )
 
 # Run MSBuild
@@ -16,8 +19,10 @@ Copy-Item -Path "${PSScriptRoot}/VirtualDesktop/bin/Release/VirtualDesktop.exe" 
 Copy-Item -Path "${PSScriptRoot}/VirtualDesktopService/bin/Release/VirtualDesktopService.exe" "${installHome}/"
 
 # Re-install Windows Service
-sudo installutil /u "${installHome}/VirtualDesktopService.exe"
-sudo installutil "${installHome}/VirtualDesktopService.exe"
+$exePath=Resolve-Path -Path "${installHome}/VirtualDesktopService.exe"
+sudo Stop-Service -Name "$serviceName" 2>&1>$null
+sudo Remove-Service -Name "$serviceName" 2>&1>$null
+sudo New-Service -Name "'$serviceName'" -DisplayName "'${serviceDisplayName}'" -Description "'${serviceDescription}'" -BinaryPathName "'${exePath}'" -StartupType Automatic >$null
 
 # Start re-installed service back up
-sudo Start-Service -Name VirtualDesktopService
+sudo Start-Service -Name "$serviceName" >$null

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.ServiceProcess;
 
 namespace VirtualDesktopService
@@ -9,6 +11,7 @@ namespace VirtualDesktopService
         private ProcessDetail PD;
         public VirtualDesktopService()
         {
+            log(DateTime.Now.ToLocalTime().ToLongTimeString() + " VirtualDesktopService initialized!");
             InitializeComponent();
         }
 
@@ -52,6 +55,12 @@ namespace VirtualDesktopService
         protected void killDuplicateExecutions()
         {
             foreach (var process in Process.GetProcessesByName("VirtualDesktop")){ process.Kill(); }
+        }
+
+        protected void log(string text)
+        {
+            Console.WriteLine(text);
+            File.WriteAllText(getCurrentDirectoryPath() + @"\" + "VirtualDesktop.log", text);
         }
     }
 }
