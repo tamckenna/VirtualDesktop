@@ -299,6 +299,21 @@ namespace VirtualDesktop
                     }
                 }
             }
+
+			if (!(processes == null || processes.Length == 0))
+			{
+				Process[] expProcesses = Process.GetProcessesByName("explorer");
+				foreach (Process p in expProcesses)
+				{
+					if (p.MainWindowHandle != IntPtr.Zero)
+					{
+						SetForegroundWindow(p.MainWindowHandle);
+						break;
+					}
+				}
+            }
+			
+
         }
 
 		// get process id to window handle
