@@ -6,6 +6,9 @@ param(
     [string]$serviceDescription="A service managing Virtual Desktop hot keys."
 )
 
+# Verify $installHome exists
+New-Item -Force -ItemType Directory -Path "${installHome}" > $null
+
 # Run MSBuild
 msbuild "${PSScriptRoot}/VirtualDesktop.sln" /target:"clean;build" /property:Configuration=Debug
 msbuild "${PSScriptRoot}/VirtualDesktop.sln" /target:"clean;build" /property:Configuration=Release
