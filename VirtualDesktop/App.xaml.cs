@@ -17,8 +17,9 @@ namespace VirtualDesktop
             base.OnStartup(e);
             GLOBAL_CONF_FILE = this.getCurrentDirectoryPath() + @"\" + "VirtualDesktop.conf";
             HotKeyManager.SetupSystemHook();
-            HotKeyManager.AddHotKey(ModifierKeys.Alt, Key.Left, staSwitchDesktopLeft);
-            HotKeyManager.AddHotKey(ModifierKeys.Alt, Key.Right, staSwitchDesktopRight);
+            ModifierKeys modKeys = (ModifierKeys.Control | ModifierKeys.Shift);
+            HotKeyManager.AddHotKey(modKeys, Key.Left, staSwitchDesktopLeft);
+            HotKeyManager.AddHotKey(modKeys, Key.Right, staSwitchDesktopRight);
         }
 
         protected override void OnExit(ExitEventArgs e)
